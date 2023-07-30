@@ -5,7 +5,7 @@ const IncomeSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        maxLength: 50
+        maxLength: 20
     },
     amount: {
         type: Number,
@@ -15,7 +15,8 @@ const IncomeSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        default: "expense"
+        /* default: "expense" */
+        default: "income"
     },
     date: {
         type: Date,
@@ -30,7 +31,7 @@ const IncomeSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        maxLength: 30,
+        maxLength: 50,
         trim: true
     },
 }, { timestamps: true })

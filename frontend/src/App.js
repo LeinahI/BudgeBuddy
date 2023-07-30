@@ -11,10 +11,10 @@ import { UseGlobalContext } from "./context/globalContext";
 
 
 function App() {
-  const [active, setActive] = React.useState(1)
+  const [active, setActive] = useState(1)
 
   const global = UseGlobalContext()
-  console.log(global);
+  /* console.log(global); */
 
   const displayData = () => {
     switch (active) {
@@ -52,6 +52,7 @@ const AppStyled = styled.div`
   height: 100vh;
   background-image: url(${props => props.bg});
   position: relative;
+  overflow: hidden;
   main{
     flex: 1;
     background: rgba(252, 246, 249, 0.78);

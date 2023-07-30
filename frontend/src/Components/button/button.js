@@ -8,7 +8,7 @@ function Button({ name, icon, onClick, bg, bPad, color, bRad }) {
             padding: bPad,
             borderRadius: bRad,
             color: color,
-        }} onClick = {onClick}>
+        }} onClick={onClick}>
             {icon}
             {name}
         </ButtonStyled>
@@ -23,6 +23,7 @@ const ButtonStyled = styled.button`
     display: flex;
     align-items: center;
     gap: .5rem;
+    cursor: pointer;
     transition: all .4s ease-in-out;
 `;
 
