@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { allowance, bitcoin, book, calender, card, circle, clothing, comment, food, freelance, medical, money, peso, piggy, savings, stocks, takeaway, trash, tv, users, yt } from '../../utils/icons';
+import { DateFormat } from '../../utils/dateFormat';
+import { allowance, business, calendar, care, clothing, comment, donate, educ, entertainment, ewallet, food, freelance, gambling, gas, gifts, money, otherExpense, otherIncome, peso, sim, stocks, transpo, trash } from '../../utils/icons';
 import Button from '../button/button';
 
 function IncomeItem({
@@ -15,6 +16,11 @@ function IncomeItem({
     type
 }) {
 
+    /* const formatDate = (dateFull) => {
+        const dateSetting = { month: 'long', day: '2-digit', year: 'numeric' };
+        return new Date(dateFull).toLocaleDateString('en-US', dateSetting);
+    }; */
+
     const categoryIcon = () => {
         switch (category) {
             case 'salary':
@@ -23,12 +29,16 @@ function IncomeItem({
                 return freelance;
             case 'investments':
                 return stocks;
+            case 'business':
+                return business;
             case 'allowance':
                 return allowance;
-            case 'savings':
-                return savings;
+            case 'gifts':
+                return gifts;
+            case 'gambling':
+                return gambling;
             case 'others':
-                return piggy;
+                return otherIncome;
             default:
                 return ''
         }
@@ -36,38 +46,46 @@ function IncomeItem({
 
     const expenseCatIcon = () => {
         switch (category) {
-            case 'education':
-                return book;
-            case 'groceries':
-                return food;
-            case 'health':
-                return medical;
-            case 'subscriptions':
-                return tv;
-            case 'takeaways':
-                return takeaway;
             case 'clothing':
                 return clothing;
-            case 'travelling':
-                return freelance;
-            case 'other':
-                return circle;
+            case 'donation':
+                return donate;
+            case 'educational':
+                return educ;
+            case 'entertainment':
+                return entertainment;
+            case 'food':
+                return food;
+            case 'gas':
+                return gas;
+            case 'care':
+                return care;
+            case 'sim':
+                return sim;
+            case 'transportation':
+                return transpo;
+            case 'ewallet':
+                return ewallet;
+            case 'others':
+                return otherExpense;
             default:
                 return ''
         }
     }
 
+    console.log('type: ', type);
+
     return (
         <IncomeItemStyled indicator={indicatorColor}>
             <div className="icon">
-                {type === 'expense' ? expenseCatIcon() : categoryIcon()}
+                {type === 'income' ? categoryIcon() : expenseCatIcon()}
             </div>
             <div className="content">
                 <h5>{title}</h5>
                 <div className="inner-content">
                     <div className="text">
                         <p>{peso} {amount}</p>
-                        <p>{calender} {date}</p>
+                        <p>{calendar} {/* formatDate(date) */DateFormat(date)}</p>
                         <p>{comment} {description}</p>
                     </div>
                     <div className="btn-con">
@@ -78,7 +96,7 @@ function IncomeItem({
                             bg={'var(--primary-color)'}
                             color={'#fff'}
                             iColor={'#fff'}
-                            hColor={'var(--color-green)'}
+                            hColor={'var(--color-purple)'}
                             onClick={() => deleteItem(id)}
                         />
                     </div>
@@ -98,8 +116,9 @@ const IncomeItemStyled = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    width: 100%;
-    color: #222260;
+    width: 99%;
+    color: var(--color-sub3);
+    box-shadow: 5px 5px 5px var(--color-accent);
     .icon{
         width: 80px;
         height: 80px;
@@ -138,10 +157,6 @@ const IncomeItemStyled = styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
-
-            .sc-dcJsrY{
-                cursor: pointer;
-            }
 
             .text{
                 display: flex;

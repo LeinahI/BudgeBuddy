@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { UseGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/layouts';
-import Form from '../form/form';
+import IncomeForm from '../form/IncomeForm';
 import IncomeItem from '../IncomeItem/incomeItem';
 
 function Incomes() {
-  const { addIncome, incomes, getIncomes, deleteIncome, totalIncome } = UseGlobalContext()
+  const { incomes, getIncomes, deleteIncome, totalIncome } = UseGlobalContext()
 
   useEffect(() => {
     getIncomes()
@@ -15,15 +15,15 @@ function Incomes() {
   return (
     <IncomesStyled>
       <InnerLayout>
-        <h1>My Incomes</h1>
+        <h1 style={{color: 'var(--color-sub1)'}}>My Income</h1>
         <h2 className="total-income">Total Income: <span>₱{totalIncome()}</span></h2>
         <div className="income-content">
           <div className="form-container">
-            <Form />
+            <IncomeForm />
           </div>
           <div className="incomes">
             {incomes.map((income) => {
-              const { _id, title, amount, date, category, description } = income;
+              const { _id, title, amount, date, category, description, type } = income;
               return <IncomeItem
                 key={_id}
                 id={_id}
@@ -31,8 +31,9 @@ function Incomes() {
                 description={description}
                 amount={amount}
                 date={date}
+                type={type}
                 category={category}
-                indicatorColor="var(--color-green)"
+                indicatorColor="var(--color-purple)"
                 deleteItem={deleteIncome}
               />
             })}
@@ -59,18 +60,27 @@ const IncomesStyled = styled.div`
     margin: 1rem;
     font-size: 2rem;
     gap: .5rem;
+    box-shadow: 5px 5px 5px var(--color-accent);
     span{
       font-size: 2.5rem;
       font-weight: 600;
-      color: var(--color-green);
+      color: var(--color-sub1);
     }
   }
 
   .income-content{
     display: flex;
+    padding: 1rem;
     gap: 2rem;
+
     .incomes{
       flex: 1;
+      overflow-y: scroll;
+      height: 520px;
+    }
+
+    .incomes::-webkit-scrollbar {
+            display: none;
     }
   }
 `;

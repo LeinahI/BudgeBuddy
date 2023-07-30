@@ -1,18 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
+import { UseGlobalContext } from '../../context/globalContext'
 import avatar from '../../img/avatar.png'
-import { signout } from '../../utils/icons'
+import { peso } from '../../utils/icons'
 import { menuItems } from '../../utils/menuItems'
 
-function navigation({active, setActive}) {
-    
+function Navigation({ active, setActive }) {
+    const { totalBalance } = UseGlobalContext()
+
     return (
         <NavStyled>
             <div className='user-con'>
                 <img src={avatar} alt="avatar" />
                 <div className='text'>
                     <h2>Leinah</h2>
-                    <p>Your Money</p>
+                    <p>Your money {peso} {totalBalance()} </p>
                 </div>
             </div>
             <ul className='menu-items'>
@@ -26,11 +28,6 @@ function navigation({active, setActive}) {
                     </li>
                 })}
             </ul>
-            <div className='bottom-nav'>
-                <li>
-                    {signout} Sign out
-                </li>
-            </div>
         </NavStyled>
     )
 }
@@ -64,10 +61,10 @@ const NavStyled = styled.nav`
             box-shadow: 0px 1px 17px rgba(0, 0, 0, 0.06);
         }
         h2{
-            color: rgba(34, 34, 96, 1);
+            color: var(--primary-color);
         }
         p{
-            color: rgba(34, 34, 96, .6);
+            color: var(--color-sub2);
         }
     }
 
@@ -83,11 +80,11 @@ const NavStyled = styled.nav`
             font-weight: 500;
             cursor: pointer;
             transition: all .4s ease-in-out;
-            color: rgba(34, 34, 96, .6);
+            color: var(--primary-color);
             padding-left: 1rem;
             position: relative;
             i{
-                color: rgba(34, 34, 96, 0.6);
+                color: var(--primary-color);
                 font-size: 1.4rem;
                 transition: all .4s ease-in-out;
             }
@@ -95,9 +92,9 @@ const NavStyled = styled.nav`
     }
 
     .active{
-        color: rgba(34, 34, 96, 1) !important;
+        color: var(--color-sub1) !important;
         i{
-            color: rgba(34, 34, 96, 1) !important;
+            color: var(--color-sub1) !important;
         }
         &::before{
             content: "";
@@ -106,10 +103,10 @@ const NavStyled = styled.nav`
             top: 0;
             width: 4px;
             height: 100%;
-            background: #222260;
+            background: var(--color-sub1);
             border-radius: 0 10px 10px 0;
         }
     }
 `;
 
-export default navigation
+export default Navigation
