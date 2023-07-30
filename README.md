@@ -1,6 +1,6 @@
 # BudgeBuddy
- BudgeBuddy: MERN Stack Expenses Tracker Application
-
+ BudgeBuddy: MERN Stack Expenses Tracker Application\
+[![My Skills](https://skillicons.dev/icons?i=mongodb,expressjs,react,nodejs)](https://skillicons.dev)
 # Configuration
 • Open the `.env` file of this project in backend folder.
 • Modify the following environment variables to the `.env` file:
