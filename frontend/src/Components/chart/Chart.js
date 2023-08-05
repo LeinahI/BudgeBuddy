@@ -68,9 +68,11 @@ function Charts() {
   };
 
   return (
-    <ChartStyled>
-      <Line data={data} />
-    </ChartStyled>
+    <center>
+      <ChartStyled>
+        <Line data={data} />
+      </ChartStyled>
+    </center>
   );
 }
 
@@ -78,10 +80,11 @@ const ChartStyled = styled.div`
   background: #fcf6f9;
   border: 2px solid #ffffff;
   box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-  padding: 1rem;
+  padding: 1rem; 
   border-radius: 20px;
   height: 100%;
   box-shadow: 5px 5px 5px var(--color-accent);
+
 `;
 
 export default Charts;

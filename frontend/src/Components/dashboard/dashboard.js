@@ -23,7 +23,7 @@ function Dashboard() {
   return (
     <DashboardStyled>
       <InnerLayout>
-        <h1 style={{color: 'var(--color-sub3)'}}>All Transactions</h1>
+        <h1 style={{ color: 'var(--color-sub3)' }}>All Transactions</h1>
         <div className="stats-con">
           <div className="chart-con">
             <Charts />
@@ -52,30 +52,32 @@ function Dashboard() {
             <History />
             <h2 className="salary-title">Min <span>Income</span>Max</h2>
             <div className="salary-item">
-              <p style={{color: 'var(--color-sub1)'}}>
+              <p style={{ color: 'var(--color-sub1)' }}>
                 {peso} {minIncome}
               </p>
-              <p style={{color: 'var(--color-sub2)'}}>
+              <p style={{ color: 'var(--color-sub2)' }}>
                 {peso} {maxIncome}
               </p>
             </div>
             <h2 className="salary-title">Min <span>Expense</span>Max</h2>
             <div className="salary-item">
-              <p style={{color: 'var(--color-sub1)'}}>
+              <p style={{ color: 'var(--color-sub1)' }}>
                 {peso} {minExpense}
               </p>
-              <p style={{color: 'var(--color-sub2)'}}>
+              <p style={{ color: 'var(--color-sub2)' }}>
                 {peso} {maxExpense}
               </p>
             </div>
           </div>
         </div>
       </InnerLayout>
+
     </DashboardStyled>
   )
 }
 
 const DashboardStyled = styled.div`
+  
   .stats-con{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -83,50 +85,56 @@ const DashboardStyled = styled.div`
     .chart-con{
       grid-column: 1 / 4;
       height: 400px;
+      padding-bottom: 1rem;
       .amount-con{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 2rem;
         margin-top: 2rem;
-        .income p {
-          color: var(--color-sub1);
-        }
         .income, .expense{
           grid-column: span 2;
         }
-        .expense p {
+        .income p {
+          color: var(--color-sub1);
+          }
+          .expense p {
           color: var(--color-sub2);
-        }
+          }
         .income, .expense, .balance{
           background: #fcf6f9;
           border: 2px solid #fff;
           box-shadow: 0px 1px 15px rgba(0,0,0, 0.06);
           border-radius: 20px;
-          padding: 1rem;
+          padding: 15px 15px 0px 15px;
           box-shadow: 5px 5px 5px var(--color-accent);
           p{
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
           }
         }
         .balance{
-          grid-column: 2 / 4;
+          grid-column:  2 / 4;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: center;
+          margin-bottom: 1.5rem;
+          /* align-items: center;  */
           p{
             color: var(--color-sub3);
-            opacity: 1;
-            font-size: 4.5rem;
           }
         }
       }
     }
     .history-con{
       grid-column: 4 / -1;
+      background: #fcf6f9;
+      border: 2px solid #fff;
+      box-shadow: 0px 1px 15px rgba(0,0,0, 0.06);
+      border-radius: 20px;
+      padding: 0px 15px 15px 15px;
+      box-shadow: 5px 5px 5px var(--color-accent);
       h2{
-        margin: 1rem 0;
+        margin: 1rem;
         display: flex;
         align-items: center;
         justify-content: space-between;

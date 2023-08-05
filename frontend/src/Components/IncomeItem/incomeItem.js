@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import { DateFormat } from '../../utils/dateFormat';
 import { allowance, business, calendar, care, clothing, comment, donate, educ, entertainment, ewallet, food, freelance, gambling, gas, gifts, money, otherExpense, otherIncome, peso, sim, stocks, transpo, trash } from '../../utils/icons';
-import Button from '../button/button';
+import Btn from '../button/button';
+import { Button, Modal, ModalBody } from 'react-bootstrap';
 
 function IncomeItem({
     id,
@@ -62,7 +63,7 @@ function IncomeItem({
                 return care;
             case 'sim':
                 return sim;
-            case 'transportation':
+            case 'fare':
                 return transpo;
             case 'ewallet':
                 return ewallet;
@@ -75,8 +76,15 @@ function IncomeItem({
 
     console.log('type: ', type);
 
+    /* Modal for constant var start*/
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    /* Modal for constant var end*/
+
     return (
-        <IncomeItemStyled indicator={indicatorColor}>
+
+        <IncomeItemStyled indicator={indicatorColor} style={{ color: type === 'income' ? 'var(--color-sub1)' : 'var(--color-sub2)' }}>
             <div className="icon">
                 {type === 'income' ? categoryIcon() : expenseCatIcon()}
             </div>
@@ -89,7 +97,7 @@ function IncomeItem({
                         <p>{comment} {description}</p>
                     </div>
                     <div className="btn-con">
-                        <Button
+                        <Btn
                             icon={trash}
                             bPad={'1rem'}
                             bRad={'50%'}
@@ -97,11 +105,29 @@ function IncomeItem({
                             color={'#fff'}
                             iColor={'#fff'}
                             hColor={'var(--color-purple)'}
-                            onClick={() => deleteItem(id)}
+                            onClick={handleShow} /* () => deleteItem(id) */
                         />
                     </div>
                 </div>
             </div>
+
+            <Modal show={show} onHide={handleClose} centered>
+                <Modal.Header>
+                    <h4 className='fw-bolder' style={{ color: 'var(--primary-color)' }}>Delete Data</h4>
+                </Modal.Header>
+                <Modal.Body>
+                    <p className='fw-bold' style={{ color: 'var(--color-sub1)' }}>Are you sure you want to delete this data?</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button style={{ background: 'var(--color-sub1)' }} onClick={() => deleteItem(id)}>
+                        Yes
+                    </Button>
+                    <Button style={{ background: 'var(--color-sub2)' }} onClick={handleClose}>
+                        No
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
         </IncomeItemStyled>
     )
 }
@@ -117,7 +143,7 @@ const IncomeItemStyled = styled.div`
     align-items: center;
     gap: 1rem;
     width: 99%;
-    color: var(--color-sub3);
+     /* type === 'income' ? categoryIcon() : expenseCatIcon() */
     box-shadow: 5px 5px 5px var(--color-accent);
     .icon{
         width: 80px;

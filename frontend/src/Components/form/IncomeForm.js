@@ -8,7 +8,7 @@ import Button from '../button/button';
 import { plus } from '../../utils/icons';
 
 function IncomeForm() {
-    const { addIncome, error, setError} = UseGlobalContext()
+    const { addIncome, error, setError } = UseGlobalContext()
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -38,6 +38,7 @@ function IncomeForm() {
 
     return (
         <FormStyled onSubmit={handleSubmit}>
+            {error && <h4 className='error'>{error}</h4>}
             <div className="input-control">
                 <input
                     id="title"
@@ -108,7 +109,7 @@ function IncomeForm() {
                     color={'#fff'}
                 />
             </div>
-            {error && <h4 className='error'>{error}</h4>}
+
         </FormStyled>
     )
 }

@@ -38,6 +38,7 @@ function ExpenseForm() {
 
     return (
         <FormStyled onSubmit={handleSubmit}>
+            {error && <h4 className='error'>{error}</h4>}
             <div className="input-control">
                 <input
                     id="title"
@@ -85,11 +86,11 @@ function ExpenseForm() {
                     <option value="donation">Donations</option>
                     <option value="educational">Educational Misc.</option>
                     <option value="entertainment">Entertainment & Recreation</option>
+                    <option value="fare">Fare Transport</option>
                     <option value="food">Food</option>
                     <option value="gas">Gas</option>
                     <option value="care">Personal Care</option>
                     <option value="sim">SIM Load</option>
-                    <option value="transportation">Transportation</option>
                     <option value="ewallet">Wallet App Load</option>
                     <option value="others">Others</option>
                 </select>
@@ -111,7 +112,7 @@ function ExpenseForm() {
                     color={'#fff'}
                 />
             </div>
-            {error && <h4 className='error'>{error}</h4>}
+
         </FormStyled>
     )
 }
